@@ -1,14 +1,27 @@
-﻿
-using QuizBattle.Console;
-using QuizBattle.Console.Extensions;
-using QuizBattle.Domain;
-using QuizBattle.Application.Interfaces;
+﻿using QuizBattle.Application.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
+using QuizBattle.Infrastructure.Extensions;
+using QuizBattle.Application.Extensions;
+using QuizBattle.Console.Presentation;
 
 const int numberOfQuestions = 3;
 
-var repository = new InMemoryQuestionRepository();
-IQuestionService service = new QuestionService(repository);
-var questions = await service.GetRandomQuestionsAsync();
+// konfigurera dependency injection (DI) in konsol
+var services = new ServiceCollection();
+
+services.AddInfrastructureRepositories()    // Definierad i QuizBattle.Infrastructure
+        .AddApplicationServices();          // Definierad i QuizBattle.Application
+
+// bygg en service provider
+var provider = services.BuildServiceProvider();
+
+// skapa ett nytt scope för den här applikationen
+using var scope = provider.CreateScope();
+
+// hämta en QuestionService som injicerar IQuestionRepository automatiskt.
+var questionService = scope.ServiceProvider.GetRequiredService<IQuestionService>();
+var questions = await questionService.GetRandomQuestionsAsync(numberOfQuestions);
+var consolePresenter = scope.ServiceProvider.GetRequiredService<IConsoleQuestionPresenter>();
 
 Console.Title = "QuizBattle – Konsol (v.2 dag 1–2)";
 Console.WriteLine("Välkommen till QuizBattle!");
@@ -24,11 +37,11 @@ var asked = 0;
 foreach (var question in questions.Take(numberOfQuestions))
 {
     asked++;
-    service.DisplayQuestion(question, asked);
+    consolePresenter.DisplayQuestion(question, asked);
 
-    var pick = service.PromptForAnswer(question);
+    var pick = consolePresenter.PromptForAnswer(question);
 
-    var selectedCode = question.GetChoiceAt(pick - 1).Code;
+    string selectedCode = question.GetChoiceAt(pick - 1).Code;
     var isCorrect = question.IsCorrect(selectedCode);
 
     Console.WriteLine(isCorrect ? "✔ Rätt!" : "✖ Fel.");
