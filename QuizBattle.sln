@@ -25,6 +25,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizBattle.Application", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizBattle.Infrastructure", "src\QuizBattle.Infrastructure\QuizBattle.Infrastructure.csproj", "{C694E60B-4C67-49F0-86D9-6D1E5E61F49B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "README", "README", "{F7574918-BD27-4DD5-A54D-FA46589952A7}"
+	ProjectSection(SolutionItems) = preProject
+		src\QuizBattle.Api\README.API.md = src\QuizBattle.Api\README.API.md
+		src\QuizBattle.Application\README.Application.md = src\QuizBattle.Application\README.Application.md
+		src\QuizBattle.Console\README.Console.md = src\QuizBattle.Console\README.Console.md
+		src\QuizBattle.Domain\README.Domain.md = src\QuizBattle.Domain\README.Domain.md
+		src\QuizBattle.Infrastructure\README.Infrastructure.md = src\QuizBattle.Infrastructure\README.Infrastructure.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +114,7 @@ Global
 		{7CD9BE6D-497D-439F-9405-ABD967DB0DC6} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 		{CDE6A825-00DA-4472-8ABC-3BC2B6BC0813} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{C694E60B-4C67-49F0-86D9-6D1E5E61F49B} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{F7574918-BD27-4DD5-A54D-FA46589952A7} = {DF516102-7CCD-4543-9FD0-F9CF2210B23D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {993931F4-7127-4F03-B7AD-ED9CAF243ECC}

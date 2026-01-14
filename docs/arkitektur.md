@@ -35,9 +35,6 @@ Fokus på **Application- och API-lager**.
   - `Task<QuizSession?> GetAsync(Guid sessionId, CancellationToken ct)`
   - `Task UpdateAsync(QuizSession session, CancellationToken ct)`
 
-- `IClock.cs` → `IClock`
-  - `DateTimeOffset UtcNow { get; }`
-
 - `QuizSession.cs` → `QuizSession`
   - `Guid Id { get; }`
   - `DateTimeOffset StartedAtUtc { get; }`
@@ -95,13 +92,6 @@ Fokus på **Application- och API-lager**.
 **Typer/Filer:**
 - `InMemoryQuestionRepository.cs` → `InMemoryQuestionRepository : IQuestionRepository`
 - `InMemorySessionRepository.cs` → `InMemorySessionRepository : ISessionRepository`
-
----
-
-## QuizBattle.Api
-
-**Typer/Filer:**
-- `SystemClock.cs` → `SystemClock : IClock`
 
 ---
 
